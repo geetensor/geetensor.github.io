@@ -4,11 +4,24 @@
   
     
     <entry>
-      <title><![CDATA[test]]></title>
-      <url>/2017/07/13/test/</url>
-      <content type="html"><![CDATA[<p>tests</p>
-]]></content>
+      <title><![CDATA[恶意软件数据集表示]]></title>
+      <url>/2017/07/16/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%95%B0%E6%8D%AE%E9%9B%86%E8%A1%A8%E7%A4%BA/</url>
+      <content type="html"><![CDATA[<p>MIST:恶意软件行为的一种新的表示方法，被设计用于使用数据挖掘和机器学习的方法实现来分析恶意软件。MIST可以通过已有的见监测工具来实现或者也可以通过已有的行为监测报告来转换。</p>
+<a id="more"></a>
+<p>  MIST中，线程和进程的执行流组成一个顺序的执行报告。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICEEBB5E05FCEAF42DE98E9CAB22F4DC587/version/101?method=get-resource.png" alt="MIST"><br>  一个MIST包含若干个MIST instruction，<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE3DAFB128511F412CB4665C84FB40F131/version/99?method=get-resource.png" alt="MIST"><br>  一个MIST instruction包含一个系统调用（第一级别），包含若干个区段参数。<br>  Example1：‘load_dll’系统调用，<br>  一般将一个文件名分为一下四个部分，<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE47A250CDF34048FC82A65190894813E4/version/100?method=get-resource.png" alt="MIST"><br>  将文件类型、路径存储在第二等级（第一级为系统调用级），因为这部分比较稳定。将文件名字存储在靠后的等级，因为在执行过程中可能会生成临时文件名。将最易变的参数放在最后一个等级。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE0F2985B6984B4FBF8972CEAF25B82C80/version/104?method=get-resource.png" alt="MIST"><br>  以‘load_dll’系统调用为例，将CWSandbox报告转为MIST表示的对应过程<br>  Example2：‘connect_socket’系统调用<br>  Socket number = 1500为动态值，没有意义，因此没有将其对应到MIST表示中，远程服务器IP和winsock_result也经常改变，所以将其放在第三级。仅将远程端口存储在第二级。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE1622E4D7614349B59FE1CFB71F89C1DA/version/102?method=get-resource.png" alt="MIST"><br>  总结：论文所提到的新的表示方法可以简单描述为两点，</p>
+<pre><code>1. 用数字编码来取代原来的字符串编码（通过Mapping表实现）
+2. 将参数区段按照稳定性划分等级
+</code></pre><p>  可能遇到的主要问题：<br>  问题1：转换表的设计<br>  问题2 :区段参数优先级的设计<br>  下表为论文中给出的Mapping表设计格式，总共由26bit组成，相当庞大，设计的复杂程度较高（个人感觉）。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICEC0B8FF6844BF4480984FC7096FC697A8/version/103?method=get-resource.png" alt="MIST"><br>  实验结果：</p>
+<pre><code>1. 用机器学习的方法实验，效果比原来的数据表示方法效果更好
+2. 报告长度及instruction平均长度比原来更小
+</code></pre>]]></content>
       
+        
+        <tags>
+            
+            <tag> 论文笔记 </tag>
+            
+        </tags>
         
     </entry>
     

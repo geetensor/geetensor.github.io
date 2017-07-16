@@ -8,10 +8,10 @@
   <meta name="description" content="北京邮电大学  网络技术研究院 网络安全研究中心-工控安全、移动安全、系统安全、网络安全等。">
   <meta name="author" content="G-Tensor">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="G-Tensor"/>
+  <meta property="og:title" content="恶意软件数据集表示"/>
   <meta property="og:description" content="This is G-Tensor team" />
   <meta property="og:site_name" content="G-Tensor"/>
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:image" content="undefined"/>
   
     <link rel="alternate" href="/atom.xml" title="G-Tensor" type="application/atom+xml">
@@ -38,8 +38,7 @@
 </head>
 
   <body>
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
     <header class="site-header header-background" style="background-image: url(/img/inforge2.jpg)">
@@ -58,7 +57,7 @@
                             G-Tensor
                         </p>
                         <p class="subtitle">
-                            Archives
+                            恶意软件数据集表示
                         </p>
                     </div>
                     <div class="site-menu with-background-image">
@@ -111,34 +110,50 @@
         </div>
     </header>
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2017/07/16/恶意软件数据集表示/" class="post-title">
-    恶意软件数据集表示
-  </a>
-  <div class="date text-muted">Posted on 2017-07-16 17:21:46</div>
-</div>
-
-      
-
-    </div>
-  </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            
+              <!-- Author -->
+              <span class="author info">By G-Tensor</span>
+            
+            <!-- Date -->
+            <span class="date-time info">On
+              <span class="date">2017-07-16</span>
+              <span class="time">19:27:12</span>
+            </span>
           
           
-      </ul>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/论文笔记/">#论文笔记</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>MIST:恶意软件行为的一种新的表示方法，被设计用于使用数据挖掘和机器学习的方法实现来分析恶意软件。MIST可以通过已有的见监测工具来实现或者也可以通过已有的行为监测报告来转换。</p>
+<a id="more"></a>
+<p>  MIST中，线程和进程的执行流组成一个顺序的执行报告。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICEEBB5E05FCEAF42DE98E9CAB22F4DC587/version/101?method=get-resource.png" alt="MIST"><br>  一个MIST包含若干个MIST instruction，<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE3DAFB128511F412CB4665C84FB40F131/version/99?method=get-resource.png" alt="MIST"><br>  一个MIST instruction包含一个系统调用（第一级别），包含若干个区段参数。<br>  Example1：‘load_dll’系统调用，<br>  一般将一个文件名分为一下四个部分，<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE47A250CDF34048FC82A65190894813E4/version/100?method=get-resource.png" alt="MIST"><br>  将文件类型、路径存储在第二等级（第一级为系统调用级），因为这部分比较稳定。将文件名字存储在靠后的等级，因为在执行过程中可能会生成临时文件名。将最易变的参数放在最后一个等级。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE0F2985B6984B4FBF8972CEAF25B82C80/version/104?method=get-resource.png" alt="MIST"><br>  以‘load_dll’系统调用为例，将CWSandbox报告转为MIST表示的对应过程<br>  Example2：‘connect_socket’系统调用<br>  Socket number = 1500为动态值，没有意义，因此没有将其对应到MIST表示中，远程服务器IP和winsock_result也经常改变，所以将其放在第三级。仅将远程端口存储在第二级。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICE1622E4D7614349B59FE1CFB71F89C1DA/version/102?method=get-resource.png" alt="MIST"><br>  总结：论文所提到的新的表示方法可以简单描述为两点，</p>
+<pre><code>1. 用数字编码来取代原来的字符串编码（通过Mapping表实现）
+2. 将参数区段按照稳定性划分等级
+</code></pre><p>  可能遇到的主要问题：<br>  问题1：转换表的设计<br>  问题2 :区段参数优先级的设计<br>  下表为论文中给出的Mapping表设计格式，总共由26bit组成，相当庞大，设计的复杂程度较高（个人感觉）。<br><img src="https://note.youdao.com/yws/api/group/48830791/noteresource/OFFICEC0B8FF6844BF4480984FC7096FC697A8/version/103?method=get-resource.png" alt="MIST"><br>  实验结果：</p>
+<pre><code>1. 用机器学习的方法实验，效果比原来的数据表示方法效果更好
+2. 报告长度及instruction平均长度比原来更小
+</code></pre>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</article>
 
 
 
